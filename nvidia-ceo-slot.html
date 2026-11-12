@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chi prende la giacca? La slot del prossimo CEO di Nvidia · Info Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --carta:#FBF6F1; --inchiostro:#1A1A1A; --morbido:#5A554F; --muto:#8A837B;
+  --cabinet:#123B5E; --cabinet2:#25608F; --bordo:#0A2238;
+  --verde:#76B900; --verde-chiaro:#B6E35A;
+  --arancio:#E2622F; --arancio-scuro:#A83B1B; --rullo:#FFFDF8; --ocra:#A8801C;
+  --pixel:"Press Start 2P","Courier New",monospace;
+  --testo:"Pixelify Sans","Trebuchet MS",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--carta);color:var(--inchiostro)}
+body{font-family:var(--testo);font-size:18px;line-height:1.45;padding:16px 12px 24px}
+.wrap{max-width:620px;margin:0 auto}
+h1{font-family:var(--pixel);font-weight:400;font-size:clamp(14px,3.6vw,21px);line-height:1.6;margin:0 0 10px;color:var(--cabinet)}
+.lead{margin:0 0 22px;color:var(--morbido);max-width:58ch}
+
+/* ---------- Cabinet ---------- */
+.cabinet{display:grid;grid-template-columns:1fr 60px;align-items:start}
+.macchina{
+  background:var(--cabinet);padding:18px 16px 16px;position:relative;z-index:1;
+  box-shadow:0 -4px 0 var(--bordo),0 4px 0 var(--bordo),-4px 0 0 var(--bordo),4px 0 0 var(--bordo),8px 12px 0 rgba(18,59,94,.18);
+}
+.luci{display:flex;justify-content:space-between;margin-bottom:14px}
+.luci i{width:12px;height:12px;background:#2D4A63;display:block}
+.luci i.on{background:var(--verde-chiaro);box-shadow:0 0 0 2px rgba(182,227,90,.25)}
+.insegna{font-family:var(--pixel);color:var(--rullo);font-size:clamp(10px,2.6vw,14px);text-align:center;margin:0 0 14px;line-height:1.6}
+.insegna span{color:var(--verde)}
+
+.finestre{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.finestra{height:72px;overflow:hidden;background:var(--rullo);position:relative;
+  box-shadow:inset 0 4px 0 #D9D2C8,inset 0 -4px 0 #D9D2C8,0 0 0 4px var(--bordo)}
+.striscia{will-change:transform}
+.cella{height:72px;display:flex;align-items:center;justify-content:center}
+.cella img{width:60px;height:60px;image-rendering:pixelated;image-rendering:crisp-edges}
+
+.finestra.nome{height:64px;margin-bottom:12px}
+.finestra.nome .cella{height:64px;font-family:var(--pixel);font-size:clamp(11px,3.2vw,19px);color:var(--inchiostro);text-align:center;padding:0 8px;white-space:nowrap}
+.finestra.nome::before,.finestra.nome::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-8px;border:8px solid transparent;z-index:2}
+.finestra.nome::before{left:0;border-left-color:var(--arancio)}
+.finestra.nome::after{right:0;border-right-color:var(--arancio)}
+
+.lcd{background:var(--bordo);color:var(--verde);font-family:var(--pixel);font-size:clamp(9px,2.3vw,12px);padding:12px 10px;text-align:center;min-height:44px;line-height:1.6}
+.lcd.jackpot{color:#F5C842}
+
+/* ---------- Leva ---------- */
+.leva{position:relative;width:60px;height:250px;margin-top:70px;border:0;padding:0;background:none;cursor:pointer;overflow:hidden}
+.leva:focus-visible{outline:3px solid var(--arancio);outline-offset:2px}
+.leva .base{position:absolute;left:0;top:150px;width:30px;height:100px;background:var(--cabinet2);z-index:2;
+  box-shadow:0 -4px 0 var(--bordo),0 4px 0 var(--bordo),4px 0 0 var(--bordo)}
+.leva .braccio{position:absolute;left:14px;top:12px;width:36px;height:170px;transition:transform .14s steps(4)}
+.leva .pomo{position:absolute;left:0;top:0;width:36px;height:36px;background:var(--arancio);
+  box-shadow:inset -6px -6px 0 var(--arancio-scuro),inset 6px 6px 0 #F08A5D;
+  clip-path:polygon(25% 0,75% 0,75% 8%,92% 8%,92% 25%,100% 25%,100% 75%,92% 75%,92% 92%,75% 92%,75% 100%,25% 100%,25% 92%,8% 92%,8% 75%,0 75%,0 25%,8% 25%,8% 8%,25% 8%)}
+.leva .asta{position:absolute;left:14px;top:34px;width:8px;height:136px;background:#9AA0A6;box-shadow:inset -3px 0 0 #6E747A}
+.leva.giu .braccio{transform:translateY(112px)}
+
+/* ---------- Comandi ---------- */
+.comandi{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:26px 0 0}
+.tasto{font-family:var(--pixel);font-size:12px;color:#fff;background:var(--arancio-scuro);border:0;padding:14px 18px;cursor:pointer;
+  box-shadow:0 4px 0 #6E2410;position:relative;top:0}
+.tasto:active{top:4px;box-shadow:none}
+.tasto:focus-visible,.secondario:focus-visible{outline:3px solid var(--cabinet);outline-offset:4px}
+.tasto[disabled]{opacity:.6;cursor:wait}
+.secondario{font-family:var(--testo);font-size:16px;background:none;border:0;color:var(--cabinet);text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:8px 4px}
+.contatore{color:var(--muto);font-size:16px;margin-left:auto}
+
+/* ---------- Esito ---------- */
+.esito{margin-top:22px;padding:18px 18px 16px;background:#fff;
+  box-shadow:0 -4px 0 var(--cabinet),0 4px 0 var(--cabinet),-4px 0 0 var(--cabinet),4px 0 0 var(--cabinet)}
+.esito[hidden]{display:none}
+.pista{display:inline-block;font-size:15px;font-weight:600;color:#fff;padding:2px 10px;margin:0 0 10px}
+.pista.interna{background:#1B8F7A}
+.pista.esterna{background:#6B4FA8}
+.esito h2{font-family:var(--pixel);font-weight:400;font-size:clamp(13px,3.4vw,18px);line-height:1.5;margin:0 0 8px;color:var(--cabinet)}
+.ruolo{margin:0 0 6px;font-weight:600}
+.perche{margin:0 0 10px}
+.fonte{margin:0;color:var(--muto);font-size:15px}
+
+footer{margin-top:26px;color:var(--muto);font-size:14px;line-height:1.5}
+footer p{margin:0 0 6px}
+
+@media (max-width:420px){
+  body{font-size:16px}
+  .macchina{padding:14px 10px 12px}
+  .finestre{gap:8px}
+  .cabinet{grid-template-columns:1fr 50px}
+  .leva{width:50px}
+  .leva .braccio{left:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .leva .braccio{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Chi prende la giacca di pelle?</h1>
+  <p class="lead">Jensen Huang si è dimesso il 12 novembre 2026 dopo 33 anni alla guida di Nvidia. Colette Kress fa il CEO ad interim e il board cerca un successore, dentro e fuori l’azienda. Tira la leva: la slot pesca tra i nomi che circolano sulla stampa.</p>
+
+  <div class="cabinet">
+    <div class="macchina">
+      <div class="luci" aria-hidden="true"></div>
+      <p class="insegna">NVIDIA <span>CEO</span> 3000</p>
+      <div class="finestre" aria-hidden="true">
+        <div class="finestra"><div class="striscia" id="r0"></div></div>
+        <div class="finestra"><div class="striscia" id="r1"></div></div>
+        <div class="finestra"><div class="striscia" id="r2"></div></div>
+      </div>
+      <div class="finestra nome" aria-hidden="true"><div class="striscia" id="rn"></div></div>
+      <div class="lcd" id="lcd" role="status">INSERISCI GETTONE E TIRA LA LEVA</div>
+    </div>
+    <button class="leva" id="leva" type="button" aria-label="Tira la leva">
+      <span class="braccio" aria-hidden="true"><span class="asta"></span><span class="pomo"></span></span>
+      <span class="base" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="comandi">
+    <button class="tasto" id="gioca" type="button">Tira la leva</button>
+    <button class="secondario" id="audio" type="button" aria-pressed="false">Attiva il suono</button>
+    <span class="contatore" id="contatore"></span>
+  </div>
+
+  <section class="esito" id="esito" aria-live="polite" hidden>
+    <span class="pista" id="e-pista"></span>
+    <h2 id="e-nome"></h2>
+    <p class="ruolo" id="e-ruolo"></p>
+    <p class="perche" id="e-perche"></p>
+    <p class="fonte" id="e-fonte"></p>
+  </section>
+
+  <footer>
+    <p>Estrazione casuale tra 14 nomi citati dalla stampa internazionale fino al 12 novembre 2026: non è un pronostico né una quota.</p>
+    <p>Fonti: comunicato Nvidia, Financial Times, The Information, The Week, Newsweek, Oneindia.</p>
+    <p>Gioco: Luca Tremolada · Info Data, Il Sole 24 Ore</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  /* ---------- I papabili ---------- */
+  const C = [
+    {nome:"Colette Kress", pista:"interna", ruolo:"CFO dal 2013, da oggi CEO ad interim", perche:"Guida Nvidia mentre il board cerca il nome definitivo, senza lasciare la poltrona di direttrice finanziaria. Per molti è la reggente, non la successora.", fonte:"Comunicato Nvidia, The Information"},
+    {nome:"Ian Buck", pista:"interna", ruolo:"Vicepresidente, il papà di CUDA", perche:"Ha guidato lo sviluppo di CUDA, la piattaforma software che tiene legati gli sviluppatori alle GPU Nvidia.", fonte:"The Week, Oneindia"},
+    {nome:"Bryan Catanzaro", pista:"interna", ruolo:"Vicepresidente della ricerca applicata in deep learning", perche:"Il nome di chi viene dal laboratorio: citato tra gli interni con un profilo da tecnologo.", fonte:"Oneindia"},
+    {nome:"Debora Shoquist", pista:"interna", ruolo:"Executive vice president delle operations", perche:"Una dei quattro executive officer del cerchio stretto di Huang: catena di fornitura, stabilimenti e IT.", fonte:"Financial Times"},
+    {nome:"Tim Teter", pista:"interna", ruolo:"Executive vice president e general counsel", perche:"L’avvocato del cerchio stretto: altro executive officer formale attorno a Huang.", fonte:"Financial Times"},
+    {nome:"Nick Parker", pista:"interna", ruolo:"Executive vice president, vendite nel mondo", perche:"Arrivato da Microsoft ad agosto al posto dello storico Jay Puri, andato in pensione.", fonte:"Financial Times"},
+    {nome:"Madison Huang", pista:"interna", ruolo:"Senior director, marketing di prodotto per la physical AI", perche:"La figlia di Jensen lavora in Nvidia. Se sia pronta per il ruolo, scrivono gli analisti, è tutto da vedere.", fonte:"The Week, The Information"},
+    {nome:"Spencer Huang", pista:"interna", ruolo:"Director, product management per la robotica", perche:"Il figlio di Jensen, anche lui in azienda. Stessi dubbi degli analisti sulla prontezza.", fonte:"The Week, The Information"},
+    {nome:"Lisa Su", pista:"esterna", ruolo:"CEO di AMD", perche:"Ha rimesso in piedi il rivale più diretto. Due complicazioni: guida la concorrenza ed è una lontana parente di Huang.", fonte:"The Information, The Week"},
+    {nome:"Rene Haas", pista:"esterna", ruolo:"CEO di Arm", perche:"Nel 2020 Nvidia aveva provato a comprare Arm, affare poi saltato. Il suo nome torna in quasi tutte le liste.", fonte:"The Information, Newsweek"},
+    {nome:"Pat Gelsinger", pista:"esterna", ruolo:"Ex CEO di Intel", perche:"Per un analista citato da Newsweek la lista degli esterni è più corta di quanto si pensi, e lui è dentro.", fonte:"Newsweek"},
+    {nome:"Eric Schmidt", pista:"esterna", ruolo:"Ex CEO di Google", perche:"Il veterano della Silicon Valley che compare tra i nomi esterni di peso.", fonte:"The Week"},
+    {nome:"Thomas Kurian", pista:"esterna", ruolo:"CEO di Google Cloud", perche:"Dall’altra parte del bancone: guida uno dei grandi compratori di chip per l’AI.", fonte:"The Week"},
+    {nome:"Matt Garman", pista:"esterna", ruolo:"CEO di Amazon Web Services", perche:"Il cloud più grande del mondo, cliente di peso delle GPU Nvidia.", fonte:"The Week"}
+  ];
+
+  /* ---------- Sprite a pixel 12×12 ---------- */
+  const SPRITE = {
+    chip:{px:[
+      "............","..g.g..g.g..",".KKKKKKKKKK.","gKDDDDDDDDKg",
+      ".KDGGGGGGDK.","gKDGLLLLGDKg",".KDGLLLLGDK.","gKDGGGGGGDKg",
+      ".KDDDDDDDDK.",".KKKKKKKKKK.","..g.g..g.g..","............"],
+      pal:{K:"#2B2B2B",D:"#454545",G:"#76B900",L:"#B6E35A",g:"#9AA0A6"}},
+    giacca:{px:[
+      "...KK..KK...","..KKKwwKKK..",".KKKKwwKKKK.","KKKBKwwKBKKK",
+      "KKKBKwwKBKKK","KK.BKwwKB.KK","KK.BKKKKB.KK","KK.BKKsKB.KK",
+      "KK.BKKKKB.KK","KK.BKKsKB.KK","...BKKKKB...","...BBBBBB..."],
+      pal:{K:"#1E1E1E",B:"#4A4A4A",w:"#F2F2F2",s:"#B8BEC4"}},
+    gpu:{px:[
+      "............","KKKKKKKKKKK.","KGGGGGGGGGKs","KDDDDDDDDDKs",
+      "KDgggDgggDKs","KDgOgDgOgDKs","KDgggDgggDKs","KDDDDDDDDDKs",
+      "KKKKKKKKKKKs",".yyyyyyy....","............","............"],
+      pal:{K:"#2B2B2B",D:"#4A4A4A",G:"#76B900",g:"#9AA0A6",O:"#1A1A1A",s:"#6E747A",y:"#D4A72C"}},
+    dollaro:{px:[
+      "....oooo....","..ooYYYYoo..",".oYYYdYYYYo.",".oYYddddYYo.",
+      "oYYdYdYYYYYo","oYYYddddYYYo","oYYYYdYdYYYo",".oYYddddYYo.",
+      ".oYYYdYYYYo.","..ooYYYYoo..","....oooo....","............"],
+      pal:{o:"#8A6410",Y:"#E8B923",d:"#8A6410"}}
+  };
+  const SIMBOLI = Object.keys(SPRITE);
+  const IMG = {};
+  for (const k of SIMBOLI){
+    const s = SPRITE[k], cv = document.createElement("canvas");
+    cv.width = 12; cv.height = 12;
+    const ctx = cv.getContext("2d");
+    s.px.forEach((riga,y) => [...riga].forEach((ch,x) => {
+      if (ch !== "." && s.pal[ch]){ ctx.fillStyle = s.pal[ch]; ctx.fillRect(x,y,1,1); }
+    }));
+    IMG[k] = cv.toDataURL();
+  }
+  const JACKPOT = {
+    giacca:"TRIS DI GIACCHE DI PELLE! IL GUARDAROBA È SALVO",
+    chip:"TRIS DI CHIP! IL BOARD APPROVA ALL’UNANIMITÀ",
+    gpu:"TRIS DI GPU! ANCHE QUESTE GIÀ ESAURITE",
+    dollaro:"TRIS DI DOLLARI! WALL STREET TIRA IL FIATO"
+  };
+
+  /* ---------- DOM ---------- */
+  const $ = id => document.getElementById(id);
+  const rulli = [$("r0"),$("r1"),$("r2")], rn = $("rn"), lcd = $("lcd");
+  const leva = $("leva"), gioca = $("gioca"), btnAudio = $("audio"), contatore = $("contatore");
+  const luci = document.querySelector(".luci");
+  for (let i=0;i<12;i++){ const l=document.createElement("i"); if(i%2===0) l.className="on"; luci.appendChild(l); }
+  const lampadine = [...luci.children];
+  const riduci = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const H_SIMB = 72, H_NOME = 64;
+  const caso = n => Math.floor(Math.random()*n);
+  const cellaSimbolo = k => `<div class="cella"><img src="${IMG[k]}" alt=""></div>`;
+  const cellaNome = t => `<div class="cella">${t}</div>`;
+
+  let attuali = [caso(4),caso(4),caso(4)].map(i=>SIMBOLI[i]);
+  let nomeAttuale = "? ? ? ? ?";
+  rulli.forEach((r,k)=> r.innerHTML = cellaSimbolo(attuali[k]));
+  rn.innerHTML = cellaNome(nomeAttuale);
+
+  /* ---------- Suono 8 bit ---------- */
+  let audio = null, suono = false;
+  function beep(f, d=.05, vol=.035, tipo="square"){
+    if (!suono || !audio) return;
+    const o = audio.createOscillator(), g = audio.createGain(), t = audio.currentTime;
+    o.type = tipo; o.frequency.value = f;
+    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+d);
+    o.connect(g).connect(audio.destination); o.start(t); o.stop(t+d);
+  }
+  function fanfara(lunga){
+    const note = lunga ? [523,659,784,1047,784,1047,1319] : [523,659,784];
+    note.forEach((f,i)=> setTimeout(()=>beep(f,.12,.05),i*110));
+  }
+  btnAudio.addEventListener("click", () => {
+    if (!audio){ const AC = window.AudioContext || window.webkitAudioContext; if (AC) audio = new AC(); }
+    suono = !suono;
+    btnAudio.textContent = suono ? "Disattiva il suono" : "Attiva il suono";
+    btnAudio.setAttribute("aria-pressed", String(suono));
+    if (suono) beep(880,.08);
+  });
+
+  /* ---------- Animazione rulli ---------- */
+  function gira(striscia, h, n, durata, tick){
+    return new Promise(fine => {
+      const tot = (n-1)*h; let t0 = null, ultimaCella = 0;
+      striscia.style.transform = "translateY(0)";
+      function passo(ts){
+        if (t0 === null) t0 = ts;
+        const t = Math.min(1,(ts-t0)/durata), p = 1-Math.pow(1-t,3);
+        const y = Math.round(p*tot/4)*4;          // scatti da 4 px: movimento "a pixel"
+        striscia.style.transform = `translateY(${-y}px)`;
+        const c = Math.floor(y/h);
+        if (c !== ultimaCella){ ultimaCella = c; tick && tick(); }
+        if (t < 1) requestAnimationFrame(passo); else fine();
+      }
+      requestAnimationFrame(passo);
+    });
+  }
+  async function giraSimbolo(k, bersaglio, durata){
+    const r = rulli[k], celle = [attuali[k]];
+    for (let i=0;i<16;i++) celle.push(SIMBOLI[caso(4)]);
+    celle.push(bersaglio);
+    r.innerHTML = celle.map(cellaSimbolo).join("");
+    await gira(r, H_SIMB, celle.length, durata);
+    attuali[k] = bersaglio;
+    r.innerHTML = cellaSimbolo(bersaglio); r.style.transform = "translateY(0)";
+    beep(220,.06,.05);
+  }
+  async function giraNome(idx, durata){
+    const celle = [nomeAttuale];
+    for (let i=0;i<26;i++) celle.push(C[caso(C.length)].nome);
+    celle.push(C[idx].nome);
+    rn.innerHTML = celle.map(cellaNome).join("");
+    await gira(rn, H_NOME, celle.length, durata, () => beep(1200,.02,.02));
+    nomeAttuale = C[idx].nome;
+    rn.innerHTML = cellaNome(nomeAttuale); rn.style.transform = "translateY(0)";
+  }
+
+  /* ---------- Luci ---------- */
+  let timerLuci = null;
+  function luciCorsa(){
+    if (riduci) return;
+    let i = 0;
+    timerLuci = setInterval(()=>{ lampadine.forEach((l,j)=> l.classList.toggle("on",(j-i)%4===0 || (j-i)%4===-0)); i=(i+1)%4; },90);
+  }
+  function luciStop(festa){
+    clearInterval(timerLuci); timerLuci = null;
+    if (festa && !riduci){
+      let n = 0;
+      timerLuci = setInterval(()=>{ lampadine.forEach(l=>l.classList.toggle("on", n%2===0)); if(++n>9){clearInterval(timerLuci);timerLuci=null;lampadine.forEach(l=>l.classList.add("on"));} },120);
+    } else lampadine.forEach((l,j)=> l.classList.toggle("on", j%2===0));
+  }
+
+  /* ---------- Partita ---------- */
+  let girando = false, ultimo = -1, giocate = 0;
+  async function tira(){
+    if (girando) return;
+    girando = true; gioca.disabled = true;
+    leva.classList.add("giu"); setTimeout(()=>leva.classList.remove("giu"), 320);
+    beep(160,.12,.05,"sawtooth");
+    lcd.classList.remove("jackpot");
+    lcd.textContent = "IL BOARD STA DELIBERANDO…";
+    luciCorsa();
+
+    let idx; do { idx = caso(C.length); } while (idx === ultimo && C.length > 1);
+    ultimo = idx;
+    const esce = [0,1,2].map(()=>SIMBOLI[caso(4)]);
+    const d = x => riduci ? 250 : x;
+
+    await Promise.all([
+      giraSimbolo(0, esce[0], d(1000)),
+      giraSimbolo(1, esce[1], d(1350)),
+      giraSimbolo(2, esce[2], d(1700)),
+      giraNome(idx, d(2300))
+    ]);
+
+    const tris = esce[0]===esce[1] && esce[1]===esce[2];
+    const p = C[idx];
+    lcd.textContent = tris ? JACKPOT[esce[0]] : (p.pista==="interna" ? "PROMOZIONE INTERNA?" : "ARRIVA DA FUORI?");
+    lcd.classList.toggle("jackpot", tris);
+    luciStop(tris); fanfara(tris);
+
+    $("e-pista").textContent = p.pista==="interna" ? "Pista interna" : "Pista esterna";
+    $("e-pista").className = "pista " + p.pista;
+    $("e-nome").textContent = p.nome;
+    $("e-ruolo").textContent = p.ruolo;
+    $("e-perche").textContent = p.perche;
+    $("e-fonte").textContent = "Chi lo cita: " + p.fonte;
+    $("esito").hidden = false;
+
+    giocate++;
+    contatore.textContent = giocate===1 ? "1 giocata" : giocate + " giocate";
+    girando = false; gioca.disabled = false;
+  }
+  leva.addEventListener("click", tira);
+  gioca.addEventListener("click", tira);
+})();
+</script>
+</body>
+</html>
